@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        # Optional Node.js version to install
+        NODE_VERSION: "16"
+    env_file:
+      - .env
+    volumes:
+      - ..:/workspace:cached
+    # app && db same container
+    network_mode: service:db
+    command: sleep infinity
+
+  db:
+    image: mysql:8.0
+    container_name: mysql
+    volumes:
+      - ../db/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ../db/mysql-data:/var/lib/mysql
+    env_file:
+      - .env

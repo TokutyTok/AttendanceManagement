@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no=cache">
+    <meta http-equiv="content-security-policy" content="script-src 'self'; object-src 'none'; base-uri 'none'">
+    <title>打刻</title>
+<body>
+
+    <button id="start">出勤</button>
+    <button id="wait">休憩</button>
+    <button id="end">退勤</button>
+
+    <div id="dateObj"></div>
+    <div id="timeObj"></div>
+
+    <p><a th:href="@{/attendanceRecord}">record</a></p>
+    <p><a th:href="@{/login}">here</a>login</p>
+    <script type="text/javascript" src="../js/time.js"></script>
+</body>
+
+</html>
