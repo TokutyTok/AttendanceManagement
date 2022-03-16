@@ -17,6 +17,8 @@ public class LoginController {
     public ModelAndView main() {
 
         ModelAndView mv = new ModelAndView();
+
+        mv.addObject("currentDate", stampService.getLocalDateTime());
         mv.setViewName("stamp");
 
         return mv;

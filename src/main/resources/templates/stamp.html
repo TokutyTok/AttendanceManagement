@@ -7,18 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no=cache">
     <meta http-equiv="content-security-policy" content="script-src 'self'; object-src 'none'; base-uri 'none'">
+    <p><a th:href="@{/login}">here</a>login</p>
     <title>打刻</title>
+</head>
+
 <body>
 
     <button id="start">出勤</button>
     <button id="wait">休憩</button>
     <button id="end">退勤</button>
 
-    <div id="dateObj"></div>
-    <div id="timeObj"></div>
+    <div id="timeObj">
+        <h2 th:text="*{#temporals.format(currentDate, 'HH:mm:ss')}"></h2>
+    </div>
+
+    <div id="dateObj">
+        <h3 th:text="*{#temporals.format(currentDate, 'yyyy/MM/dd')}"></h3>
+    </div>
 
     <p><a th:href="@{/attendanceRecord}">record</a></p>
-    <p><a th:href="@{/login}">here</a>login</p>
     <script type="text/javascript" src="../js/time.js"></script>
 </body>
 
