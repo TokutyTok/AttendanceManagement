@@ -23,4 +23,14 @@ public class LoginController {
 
         return mv;
     }
+
+    @GetMapping("/attendanceRecord")
+    public ModelAndView attendanceRecord() {
+
+        ModelAndView mv = new ModelAndView();
+
+        mv.setViewName("attendanceRecord");
+
+        return mv;
+    }
 }

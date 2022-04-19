@@ -14,12 +14,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     public void configure(WebSecurity web) {
         web.debug(false)
             .ignoring()
-            .antMatchers("/js/**", "/css/**");
+            .antMatchers("/js/**", "/css/**", "/webjars/**");
     }
     
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        http.authorizeRequests().antMatchers("/").permitAll()
+        http.authorizeRequests().antMatchers("/","/attendanceRecord").permitAll()
                                 .anyRequest().authenticated()
                                 .and().formLogin()
                                 .loginProcessingUrl("/login")
