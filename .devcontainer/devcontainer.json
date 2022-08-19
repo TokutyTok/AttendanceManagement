@@ -19,7 +19,8 @@
 		"mhutchie.git-graph",
 		"ms-azuretools.vscode-docker",
 		"Gruntfuggly.todo-tree",
-		"streetsidesoftware.code-spell-checker"
+		"streetsidesoftware.code-spell-checker",
+		"GabrielBB.vscode-lombok"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.

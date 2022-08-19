@@ -2,29 +2,51 @@
 
 let serverTime
 
+let currentYear
+let currentMonth
+let currentDate
+let currentDay
+
 let currentHours
 let currentMinutes
 let currentSeconds
 
-let timeObj = document.getElementById('timeObj')
+let timeObj
+let dateObj
 
-// server時刻を取得
-fetch(window.location.href).then(res => {
-    serverTime = new Date(res.headers.get('Date'))
+// DOM構築後の設定
+document.addEventListener("DOMContentLoaded", (event) => {
+    timeObj = document.getElementById('timeObj')
+    dateObj = document.getElementById('dateObj')
 
-    currentHours = serverTime.getHours()
-    currentMinutes = serverTime.getMinutes()
-    currentSeconds = serverTime.getSeconds()
+    setServerTime()
+
+    setInterval(countTimeUp, 1000)
 })
+
+let setServerTime = function () {
+    // server時刻を取得後、設定
+    fetch(window.location.href).then(res => {
+        serverTime = new Date(res.headers.get('Date'))
+
+        currentYear = serverTime.getFullYear()
+        currentMonth = serverTime.getMonth()
+        currentDate = serverTime.getDate()
+        currentDay = serverTime.getDay()
+
+        currentHours = serverTime.getHours()
+        currentMinutes = serverTime.getMinutes()
+        currentSeconds = serverTime.getSeconds()
+
+        timeObj.firstElementChild.innerHTML = formattingToTimeDisplay()
+    })
+}
 
 // 時刻をカウントアップ
 let countTimeUp = function () {
     currentTimeCalc()
 
-    if (timeObj.childElementCount != 0) {
-        timeObj.removeChild(timeObj.firstElementChild)
-    }
-    formattingToTimeDisplay()
+    timeObj.firstElementChild.innerHTML = formattingToTimeDisplay()
 }
 
 // 現在時刻の計算
@@ -42,25 +64,20 @@ let currentTimeCalc = function () {
     }
 
     if (currentHours >= 24) {
-        currentMinutes = 0
         currentHours = 0
     }
 }
 
-// 時刻形式(hh:mm:ss)に整形後、tagに配置
+// 時刻形式(hh:mm:ss)に整形
 let formattingToTimeDisplay = function () {
-    let h2 = document.createElement('h2');
-
-    h2.innerHTML = `${currentHours}:${currentMinutes}:${currentSeconds}`
-
-    timeObj.appendChild(h2)
+    return `${currentHours}:${currentMinutes}:${currentSeconds}`
 }
 
-let dateObj = document.getElementById('dateObj')
+// TODO:日跨り時の仕様
+// 年-月-日-曜日を設定
+let setDate = function () {
+    dateObj.firstElementChild.innerHTML = `${currentYear}/${currentMonth + 1}/${currentDate}(${currentDay})`
 
-let date = new Date()
-
-dateObj.innerHTML = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}(${date.getDay()})`
-
-setInterval(countTimeUp, 1000)
+    dateObj.appendChild(h3)
+}
 

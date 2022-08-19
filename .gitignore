@@ -37,7 +37,7 @@ out/
 .vscode/
 
 ### db
-db
+/db
 
 ### env
 .env
